@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply flex items-center justify-center px-4 py-2 focus:outline-none border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150;
+}
+
+.btn-primary {
+  @apply bg-blue-500 shadow-lg shadow-blue-500/50 hover:bg-blue-600 focus:bg-blue-700 active:bg-blue-800;
+}
+
+.btn-secondary {
+  @apply bg-gray-500 shadow-lg shadow-gray-500/50 hover:bg-gray-600 focus:bg-gray-700 active:bg-gray-800;
+}
+
+.btn-success {
+  @apply bg-green-500 shadow-lg shadow-green-500/50 hover:bg-green-600 focus:bg-green-700 active:bg-green-800;
+}
+
+.btn-info {
+  @apply bg-teal-500 shadow-lg shadow-teal-500/50 hover:bg-teal-600 focus:bg-teal-700 active:bg-teal-800;
+}
+
+.btn-danger {
+  @apply bg-red-500 shadow-lg shadow-red-500/50 hover:bg-red-600 focus:bg-red-700 active:bg-red-800;
+}
+
+.btn-warning {
+  @apply bg-orange-500 shadow-lg shadow-orange-500/50 hover:bg-orange-600 focus:bg-orange-700 active:bg-orange-800;
+}
+
+.error {
+  @apply text-red-500 shadow-md shadow-red-400 bg-white px-2 py-1 rounded-md 
+}
