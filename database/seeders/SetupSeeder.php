@@ -41,16 +41,9 @@ class SetupSeeder extends Seeder {
       'type' => 'user',
     ]);
 
-    User::factory(10)->has(Post::factory(2))->create();
+    User::factory(10)->has(Post::factory(3))->create();
     User::factory(100)->create();
-    Comment::factory(50)->create();
-    Reply::factory(50)->create();
-    Like::factory(10)->create();
-    // Post::factory(10)->create();
-
-    Friendship::factory(30)->create();
-    FriendshipStatus::factory(30)->create();
-
+    
     Room::create([
       'title' => 'Front End',
       'slug' => 'Front-End',
@@ -71,6 +64,14 @@ class SetupSeeder extends Seeder {
       'title' => 'Video Games',
       'slug' => 'Video-Games',
     ]);
+
+    Like::factory(20)->create();
+    Comment::factory(20)->create();
+    Reply::factory(20)->create();
+
+    Friendship::factory(30)->create();
+    FriendshipStatus::factory(30)->create();
+
     // RoomMessage::factory(10)->create();
   }
 }
