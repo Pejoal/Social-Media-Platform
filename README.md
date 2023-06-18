@@ -76,12 +76,12 @@ sail artisan migrate:fresh --seed
 npm run dev
 ```
 
-#### Don't For Get to Change .env Keys
+#### Don't Forget to Add .env Secrets
 
 ### Database
 
-#### Username: pejoal
-#### Password: pejoal
+- Username: pejoal
+- Password: pejoal
 
 ---
 
@@ -111,7 +111,7 @@ sail artisan db:seed --class=DataSeeder
 2. The Ability to Create, Edit, Delete & Like ( Posts, Comments & Replies )
 3. The Ability to See Post, Comment & Reply Likers
 4. Automatic Sending Notification Email To User With Appropriate Details When...
-> - Post, Comment & Reply Got Liked
+> - Post, Coment & Reply Got Liked
 > - Someone Comment on a Post
 > -	Someone Reply on a Comment
 > -	Someone Send a Friendship Request

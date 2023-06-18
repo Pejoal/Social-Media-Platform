@@ -19,7 +19,7 @@ class LikeFactory extends Factory
         return [
           'likeable_type' => fake()->randomElement(['App\\Models\\Post', 'App\\Models\\Comment', 'App\\Models\\Reply']),
           'likeable_id' => fake()->numberBetween(1, 20),
-          'user_id' => fake()->numberBetween(2, 60),
+          'user_id' => fake()->numberBetween(2, 102),
         ];
     }
 }

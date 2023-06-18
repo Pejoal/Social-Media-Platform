@@ -65,12 +65,13 @@ class SetupSeeder extends Seeder {
       'slug' => 'Video-Games',
     ]);
 
-    Like::factory(20)->create();
     Comment::factory(20)->create();
     Reply::factory(20)->create();
-
+    
     Friendship::factory(30)->create();
     FriendshipStatus::factory(30)->create();
+
+    Like::factory(30)->create();
 
     // RoomMessage::factory(10)->create();
   }

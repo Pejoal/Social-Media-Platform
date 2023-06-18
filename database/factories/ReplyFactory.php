@@ -18,7 +18,7 @@ class ReplyFactory extends Factory {
     return [
       'content' => fake()->sentence(5),
       'comment_id' => fake()->numberBetween(1, 15),
-      'user_id' => fake()->numberBetween(2, 12),
+      'user_id' => fake()->numberBetween(2, 102),
     ];
   }
 }
