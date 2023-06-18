@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +38,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::group([], function () {
+Route::get('/dashboard/posts/excelExport', [DashboardController::class, 'postsExcelExport'])->name('dashboard.posts.excel.export');
+Route::get('/dashboard/users/excel', [DashboardController::class, 'usersExcelExport'])->name('dashboard.users.excel');
+Route::post('/dashboard/posts/excelImport', [DashboardController::class, 'postsExcelImport'])->name('dashboard.posts.excel.import');
+
+Route::group(['middlware' => ['localeCookieRedirect', 'localizationRedirect', 'localeViewPath']], function () {
   $locales = collect(LaravelLocalization::getSupportedLocales())->map(function ($properties, $localeCode) {
     return [
       'code' => $localeCode,
@@ -160,10 +163,6 @@ Route::group([], function () {
     Route::get('/dashboard/public-messages/data', [DashboardController::class, 'publicMessagesData'])->name('dashboard.public.messages.data');
     Route::delete('/dashboard/public-messages/{message:id}/delete', [DashboardController::class, 'deletePublicMessage'])->name('dashboard.public.messages.delete');
 
-    Route::get('/dashboard/users/excel', [DashboardController::class, 'usersExcelExport'])->name('dashboard.users.excel');
-    Route::get('/dashboard/posts/excelExport', [DashboardController::class, 'postsExcelExport'])->name('dashboard.posts.excel.export');
-    Route::post('/dashboard/posts/excelImport', [DashboardController::class, 'postsExcelImport'])->name('dashboard.posts.excel.import');
-
     Route::get('/chat-groups', [ChatGroupController::class, 'index'])->name('chat.groups.index');
     Route::post('/chat-groups/store', [ChatGroupController::class, 'store'])->name('chat.groups.store');
     Route::group(['middleware' => 'joined-users-only'], function () {
@@ -186,7 +185,7 @@ Route::group([], function () {
 
     Route::post('/project/{project:slug}/status/store', [StatusController::class, 'store'])->name('status.store');
     Route::put('/project/status/sync', [StatusController::class, 'sync'])->name('status.sync');
-    
+
     Route::post('/project/{status:id}/task/store', [TaskController::class, 'store'])->name('task.store');
     Route::put('/project/task/sync', [TaskController::class, 'sync'])->name('task.sync');
 
