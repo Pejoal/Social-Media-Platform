@@ -25,7 +25,7 @@ const props = defineProps({
       >
         <Link
           class="text-lg hover:underline hover:font-bold"
-          :href="route('chat.groups.view', project.id)"
+          :href="route('project.show', project.slug)"
           >{{ project.name }}</Link
         >
 

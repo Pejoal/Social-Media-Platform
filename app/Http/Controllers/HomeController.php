@@ -54,11 +54,12 @@ class HomeController extends Controller {
       ];
     });
 
-    $projects = $request->user()->projects()->select('id','name','code','created_at')->get()->map(function ($project) {
+    $projects = $request->user()->projects()->select('id', 'name', 'code', 'slug', 'created_at')->get()->map(function ($project) {
       return [
         'id' => $project->id,
         'name' => $project->name,
         'code' => $project->code,
+        'slug' => $project->slug,
         'created_at' => $project->created_at->diffForHumans(),
       ];
     });
