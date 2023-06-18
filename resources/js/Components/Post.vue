@@ -26,23 +26,23 @@ let loading = ref(false);
   comments
 ));
 
-function handleLikePost() {
+const handleLikePost = () => {
   canLikePost.value = !canLikePost.value;
   postLikes.value++;
 }
 
-function handleUnlikePost() {
+const handleUnlikePost = () => {
   canLikePost.value = !canLikePost.value;
   postLikes.value--;
 }
 
-function handleLikeComment(key) {
+const handleLikeComment = (key) => {
   allComments.value[key].canLikeComment =
     !allComments.value[key].canLikeComment;
   allComments.value[key].likes++;
 }
 
-function handleUnlikeComment(key) {
+const handleUnlikeComment = (key) => {
   allComments.value[key].canLikeComment =
     !allComments.value[key].canLikeComment;
   allComments.value[key].likes--;

@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReplyRequest;
-use App\Jobs\CommentRepliedEmail;
 use App\Jobs\CommentRepliedEmailJob;
 use App\Models\Comment;
 use App\Models\Reply;
-use Inertia\Inertia;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class ReplyController extends Controller {
   public function index(Request $request, Comment $comment) {
@@ -37,15 +36,17 @@ class ReplyController extends Controller {
     // dd($replies);
     return Inertia::render('Replies/Index', [
       'replies' => $replies->items(),
-      'commentAuthor' => $comment->user->firstname,
-      'commentorUsername' => $comment->user->username,
-      'commentId' => $comment->id,
-      'commentContent' => $comment->content,
-      'canUpdateComment' => auth()->user()->can('update', $comment),
+      'comment' => [
+        'commentAuthor' => $comment->user->firstname,
+        'commentorUsername' => $comment->user->username,
+        'commentId' => $comment->id,
+        'commentContent' => $comment->content,
+        'canUpdateComment' => auth()->user()->can('update', $comment),
+      ],
     ]);
   }
 
-  public function store(ReplyRequest $request, Comment $comment): RedirectResponse {
+  public function store(ReplyRequest $request, Comment $comment): RedirectResponse{
 
     $request->user()->replies()->create([
       'comment_id' => $comment->id,
