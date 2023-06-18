@@ -33,14 +33,14 @@ class ReplyController extends Controller {
         ],
       ]);
     }
-    // dd($replies);
     return Inertia::render('Replies/Index', [
       'replies' => $replies->items(),
       'comment' => [
-        'commentAuthor' => $comment->user->firstname,
-        'commentorUsername' => $comment->user->username,
-        'commentId' => $comment->id,
-        'commentContent' => $comment->content,
+        'id' => $comment->id,
+        'content' => $comment->content,
+        'author' => $comment->user->firstname,
+        'authorUsername' => $comment->user->username,
+        'canLikeComment' => !$comment->likedBy(auth()->user()),
         'canUpdateComment' => auth()->user()->can('update', $comment),
       ],
     ]);

@@ -12,14 +12,15 @@ import Loading from "@/Components/Loading.vue";
 const { component, props: properities } = usePage();
 
 let props = defineProps({
-  comment: { 
+  comment: {
     type: Object,
-    dafautl: {
-      commentId: Number,
-      commentContent: String,
-      commentAuthor: String,
-      commentorUsername: String,
-      canUpdateComment: Boolean,
+    default: {
+      id: 0,
+      content: "",
+      author: "",
+      authorUsername: "",
+      canLikeComment: false,
+      canUpdateComment: false,
     },
   },
   replies: {
@@ -36,18 +37,19 @@ const form = useForm({
 
 const page = ref(2);
 const { data: allReplies, loading } = useFetch(
-  route("comments.replies", props.comment.commentId),
+  route("comments.replies", props.comment.id),
   page,
   props.replies
 );
 
 const storeReply = () => {
-  form.post(route("comments.replies.store", props.comment.commentId), {
+  form.post(route("comments.replies.store", props.comment.id), {
     preserveScroll: true,
     onSuccess: () => {
       const mergedArray = [...props.replies, ...allReplies.value];
-      allReplies.value = Array.from(new Set(mergedArray.map((obj) => obj.id)))
-        .map((id) => mergedArray.find((obj) => obj.id === id));
+      allReplies.value = Array.from(
+        new Set(mergedArray.map((obj) => obj.id))
+      ).map((id) => mergedArray.find((obj) => obj.id === id));
       form.reset();
     },
     onError: () => {
@@ -63,20 +65,17 @@ const back = () => {
   window.history.back();
 };
 
-const canLikeComment = ref(properities.post.canLikeComment);
-
+const canLikeComment = ref(properities.comment.canLikeComment);
 
 const handleLikeReply = (key) => {
-  allReplies.value[key].canLikeReply =
-    !allReplies.value[key].canLikeReply;
+  allReplies.value[key].canLikeReply = !allReplies.value[key].canLikeReply;
   allReplies.value[key].likes++;
-}
+};
 
 const handleUnlikeReply = (key) => {
-  allReplies.value[key].canLikeReply =
-    !allReplies.value[key].canLikeReply;
+  allReplies.value[key].canLikeReply = !allReplies.value[key].canLikeReply;
   allReplies.value[key].likes--;
-}
+};
 
 const deleteCommentForm = useForm({
   component,
@@ -110,7 +109,7 @@ function handleDeleteComment(id) {
   });
 }
 
-function handleDeleteReply(commentId, replyId) {
+function handleDeleteReply(id, replyId) {
   swal({
     title: properities.words.are_you_sure,
     text: properities.words.once_deleted_reply,
@@ -120,7 +119,7 @@ function handleDeleteReply(commentId, replyId) {
   }).then((willDelete) => {
     if (willDelete) {
       deleteReplyForm.delete(
-        route("comments.replies.delete", [commentId, replyId]),
+        route("comments.replies.delete", [id, replyId]),
         {
           preserveScroll: true,
           onSuccess: () => {
@@ -133,10 +132,7 @@ function handleDeleteReply(commentId, replyId) {
             form.reset("content");
           },
           onError: (error) => {
-            swal(
-              properities.words.something_went_wrong,
-              error.message,
-            );
+            swal(properities.words.something_went_wrong, error.message);
           },
         }
       );
@@ -154,9 +150,12 @@ function handleDeleteReply(commentId, replyId) {
     <template #content>
       <section
         class="relative py-6 mb-4 rounded-lg bg-zinc-800 text-white"
-        v-if="props.comment.commentId"
+        v-if="props.comment.id"
       >
-        <section v-if="props.comment.canUpdateComment" class="absolute right-4 top-2">
+        <section
+          v-if="props.comment.canUpdateComment"
+          class="absolute right-4 top-2"
+        >
           <Dropdown width="48">
             <template #trigger>
               <span class="inline-flex rounded-md">
@@ -182,13 +181,13 @@ function handleDeleteReply(commentId, replyId) {
 
             <template #content>
               <button
-                @click="handleDeleteComment(props.comment.commentId)"
+                @click="handleDeleteComment(props.comment.id)"
                 class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"
               >
                 {{ $page.props.words.delete }}
               </button>
               <Link
-                :href="route('comments.edit', props.comment.commentId)"
+                :href="route('comments.edit', props.comment.id)"
                 as="button"
                 class="block w-full text-green-500 ml-auto hover:green-red-800 text-lg hover:underline"
                 >{{ $page.props.words.edit }}</Link
@@ -197,13 +196,13 @@ function handleDeleteReply(commentId, replyId) {
           </Dropdown>
         </section>
         <Link
-          :href="route('user.profile', props.comment.commentorUsername)"
+          :href="route('user.profile', props.comment.authorUsername)"
           as="button"
           class="text-gray-300 px-2 font-bold hover:text-gray-50 text-lg hover:underline"
         >
-          {{ props.comment.commentAuthor }}</Link
+          {{ props.comment.author }}</Link
         >
-        <p class="mt-3 px-4" v-html="props.comment.commentContent"></p>
+        <p class="mt-3 px-4" v-html="props.comment.content"></p>
         <form
           @submit.prevent="storeReply"
           class="bg-zinc-700 mt-6 mx-2 space-y-6 p-2 rounded-lg"
@@ -245,7 +244,7 @@ function handleDeleteReply(commentId, replyId) {
           <p class="px-2">{{ $page.props.words.the_replies }}:</p>
           <section class="py-3 px-1">
             <div
-              v-for="reply in allReplies"
+              v-for="(reply, key) in allReplies"
               :key="reply.id"
               class="my-2 p-2 rounded-lg relative bg-zinc-800"
             >
@@ -267,7 +266,10 @@ function handleDeleteReply(commentId, replyId) {
               <div class="flex justify-between px-6 py-2 my-1">
                 <Link
                   :href="
-                    route('comments.replies.likes', [props.comment.commentId, reply.id])
+                    route('comments.replies.likes', [
+                      props.comment.id,
+                      reply.id,
+                    ])
                   "
                   class="text-gray-300 hover:text-gray-50 text-lg hover:underline"
                 >
@@ -278,10 +280,11 @@ function handleDeleteReply(commentId, replyId) {
                   :preserve-scroll="true"
                   :href="
                     route('comments.replies.likes.store', [
-                      props.comment.commentId,
+                      props.comment.id,
                       reply.id,
                     ])
                   "
+                  @click="handleLikeReply(key)"
                   method="post"
                   as="button"
                   class="btn btn-success"
@@ -293,10 +296,11 @@ function handleDeleteReply(commentId, replyId) {
                   :preserve-scroll="true"
                   :href="
                     route('comments.replies.likes.delete', [
-                      props.comment.commentId,
+                      props.comment.id,
                       reply.id,
                     ])
                   "
+                  @click="handleUnlikeReply(key)"
                   method="delete"
                   as="button"
                   class="btn btn-danger"
@@ -333,7 +337,9 @@ function handleDeleteReply(commentId, replyId) {
 
                   <template #content>
                     <button
-                      @click="handleDeleteReply(props.comment.commentId, reply.id)"
+                      @click="
+                        handleDeleteReply(props.comment.id, reply.id)
+                      "
                       class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"
                     >
                       {{ $page.props.words.delete }}
@@ -341,7 +347,7 @@ function handleDeleteReply(commentId, replyId) {
                     <Link
                       :href="
                         route('comments.replies.edit', [
-                          props.comment.commentId,
+                          props.comment.id,
                           reply.id,
                         ])
                       "
