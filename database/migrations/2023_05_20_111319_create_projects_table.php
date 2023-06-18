@@ -13,7 +13,7 @@ return new class extends Migration {
       $table->id();
       $table->string('name');
       $table->string('code');
-      $table->string('slug');
+      $table->string('slug')->unique();
       $table->foreignId('creator_id')->constrained('users')->onDelete('cascade');
       $table->timestamps();
     });
