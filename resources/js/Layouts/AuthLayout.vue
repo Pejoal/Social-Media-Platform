@@ -6,9 +6,14 @@ import Locales from "@/Components/Locales.vue";
 import Actions from "@/Components/Actions.vue";
 import Hamburger from "@/Components/Hamburger.vue";
 import ChatGroups from "@/Components/ChatGroups.vue";
+import Projects from "@/Components/Projects.vue";
 
 const props = defineProps({
   joined_chat_groups: {
+    type: Array,
+    default: [],
+  },
+  projects: {
     type: Array,
     default: [],
   },
@@ -89,9 +94,14 @@ const toggleNav = () => {
               class="p-2 bg-slate-800 rounded-lg mb-2"
             />
             <ChatGroups
-              v-if="props.joined_chat_groups.length > 0"
+              v-if="props.joined_chat_groups.length >= 1"
               :joined_chat_groups="props.joined_chat_groups"
               class="bg-slate-800 rounded-lg"
+            />
+            <Projects
+              v-if="props.projects.length >= 1"
+              :projects="props.projects"
+              class="bg-slate-800 rounded-lg my-2"
             />
             <div class="py-2 border-t">
               <Link

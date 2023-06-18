@@ -21,6 +21,10 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  projects: {
+    type: Array,
+    default: [],
+  },
 });
 
 let search = ref(props.filters.search);
@@ -79,6 +83,7 @@ function deletePost(id) {
   <AuthLayout
     v-on:setPosts="setPosts"
     :joined_chat_groups="props.joined_chat_groups"
+    :projects="props.projects"
   >
     <template #left-sidebar> </template>
     <template #content>

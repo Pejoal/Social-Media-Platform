@@ -53,10 +53,21 @@ class HomeController extends Controller {
         'created_at' => $chat_group->created_at->diffForHumans(),
       ];
     });
+
+    $projects = $request->user()->projects()->select('id','name','code','created_at')->get()->map(function ($project) {
+      return [
+        'id' => $project->id,
+        'name' => $project->name,
+        'code' => $project->code,
+        'created_at' => $project->created_at->diffForHumans(),
+      ];
+    });
+
     return Inertia::render('Home', [
       'posts' => $posts->items(),
       'filters' => $request->only(['search']),
       'joined_chat_groups' => $joined_chat_groups,
+      'projects' => $projects,
     ]);
   }
 }
