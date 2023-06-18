@@ -42,7 +42,7 @@ Route::get('/dashboard/posts/excelExport', [DashboardController::class, 'postsEx
 Route::get('/dashboard/users/excel', [DashboardController::class, 'usersExcelExport'])->name('dashboard.users.excel');
 Route::post('/dashboard/posts/excelImport', [DashboardController::class, 'postsExcelImport'])->name('dashboard.posts.excel.import');
 
-Route::group(['middlware' => ['localeCookieRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+Route::group(['middleware' => ['localeCookieRedirect', 'localizationRedirect', 'localeViewPath']], function () {
   $locales = collect(LaravelLocalization::getSupportedLocales())->map(function ($properties, $localeCode) {
     return [
       'code' => $localeCode,
