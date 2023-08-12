@@ -63,12 +63,13 @@ alias sail="./vendor/bin/sail"
 ```
 
 ```shell
-sail composer install --ignore-platform-reqs
+sail up -d
 ```
 
 ```shell
-sail up -d
+sail composer install --ignore-platform-reqs
 ```
+
 
 ```shell
 sail artisan storage:link
