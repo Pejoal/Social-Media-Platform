@@ -31,7 +31,6 @@ cp .env.example .env
 - #### Install NVM
 ```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 ```
 
 ```shell
@@ -43,10 +42,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 nvm install 19.1.0
 ```
 
-- ### Then
-```shell
-nvm install 19.1.0
-```
 
 ```shell
 npm install
