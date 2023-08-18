@@ -5,7 +5,7 @@ import Post from "@/Components/Post.vue";
 import Loading from "@/Components/Loading.vue";
 import { Head } from "@inertiajs/vue3";
 import { useFetch } from "@/utils";
-import { trans } from 'laravel-vue-i18n';
+// import { trans } from 'laravel-vue-i18n';
 import { loadLanguageAsync } from 'laravel-vue-i18n';
 
 const props = defineProps({
