@@ -71,6 +71,11 @@ Route::group(['middleware' => ['localeCookieRedirect', 'localizationRedirect', '
 
   require __DIR__ . '/auth.php';
 
+//   Route::get('language/{language}', function ($language) {
+//     session()->put('locale', $language);
+//     return;
+// })->name('language');
+
   Route::middleware(['auth', 'verified'])->group(function () {
 
     // Route::group(['prefix' => 'auth'], function () {

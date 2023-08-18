@@ -13,6 +13,7 @@ class HomeController extends Controller {
   public function index(Request $request) {
     // dd(MasterSetting::first()->app_name);
     // $page = $request->input('page');
+
     $posts = Post::query()
       ->when($request->search, function ($query, $search) {
         $query->where('content', 'like', "%{$search}%");

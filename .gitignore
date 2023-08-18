@@ -17,3 +17,4 @@ yarn-error.log
 /.idea
 /.vscode
 live.sh
+lang/php_*.json

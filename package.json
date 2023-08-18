@@ -23,6 +23,7 @@
         "datatables.net-select": "^1.6.2",
         "datatables.net-vue3": "^2.1.0",
         "laravel-echo": "^1.15.0",
+        "laravel-vue-i18n": "^2.7.1",
         "pusher-js": "^7.0.2",
         "sweetalert": "^2.1.2",
         "vuedraggable": "^4.1.0"

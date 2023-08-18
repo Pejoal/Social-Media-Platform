@@ -5,6 +5,8 @@ import Post from "@/Components/Post.vue";
 import Loading from "@/Components/Loading.vue";
 import { Head } from "@inertiajs/vue3";
 import { useFetch } from "@/utils";
+import { trans } from 'laravel-vue-i18n';
+import { loadLanguageAsync } from 'laravel-vue-i18n';
 
 const props = defineProps({
   posts: {
@@ -89,8 +91,11 @@ function deletePost(id) {
     <template #content>
       <section class="flex items-center justify-between px-4 md:px-0 pt-6 pb-4">
         <button class="btn btn-primary" @click="doSearch(search)">
-          {{ $page.props.words.search }}
+          <!-- {{ $page.props.words.search }} -->
+          {{ trans('words.my_profile') }}
         </button>
+        <button @click="loadLanguageAsync('en')">Change to English Language</button>
+
         <input
           class="py-2 px-4 rounded-xl text-black w-3/4"
           type="search"
