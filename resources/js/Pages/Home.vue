@@ -91,10 +91,10 @@ function deletePost(id) {
     <template #content>
       <section class="flex items-center justify-between px-4 md:px-0 pt-6 pb-4">
         <button class="btn btn-primary" @click="doSearch(search)">
-          <!-- {{ $page.props.words.search }} -->
-          {{ trans('words.my_profile') }}
+          {{ $page.props.words.search }}
+          <!-- {{ trans('words.my_profile') }} -->
         </button>
-        <button @click="loadLanguageAsync('en')">Change to English Language</button>
+        <!-- <button @click="loadLanguageAsync('en')">Change to English Language</button> -->
 
         <input
           class="py-2 px-4 rounded-xl text-black w-3/4"
