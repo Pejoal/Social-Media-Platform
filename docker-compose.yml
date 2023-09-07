@@ -56,6 +56,8 @@ services:
       - PMA_PORT=3306 
     networks:
       sail:
+    depends_on:
+      - mariadb
 networks:
   sail:
     driver: bridge
