@@ -1,6 +1,23 @@
 # For more information: https://laravel.com/docs/sail
 version: '3'
 services:
+  nginx:
+    image: 'nginx:latest'
+    ports:
+      - '${HTTP_PORT:-8000}:80'
+      - '${SSL_PORT:-443}:443'
+    environment:
+      - SSL_PORT=${SSL_PORT:-443}
+      - APP_SERVICE=${APP_SERVICE:-laravel.test}
+      - SERVER_NAME=${SERVER_NAME:-localhost}
+    volumes:
+      - 'sail-nginx:/etc/nginx/certs'
+      - './nginx/templates:/etc/nginx/templates'
+      - './vendor/ryoluo/sail-ssl/nginx/generate-ssl-cert.sh:/docker-entrypoint.d/99-generate-ssl-cert.sh'
+    depends_on:
+      - ${APP_SERVICE:-laravel.test}
+    networks:
+      - sail
   laravel.test:
     build:
       context: ./vendor/laravel/sail/runtimes/8.2
@@ -62,5 +79,7 @@ networks:
   sail:
     driver: bridge
 volumes:
+  sail-nginx:
+    driver: local
   sail-mariadb:
     driver: local

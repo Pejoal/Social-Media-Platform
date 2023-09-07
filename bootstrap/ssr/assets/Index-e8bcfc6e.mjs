@@ -1,6 +1,6 @@
 import { ref, unref, withCtx, createVNode, openBlock, createBlock, createTextVNode, toDisplayString, createCommentVNode, withModifiers, Transition, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr, ssrRenderList, ssrRenderAttr } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
 import { usePage, useForm, Head, Link } from "@inertiajs/vue3";
 import { _ as _sfc_main$2, a as _sfc_main$3 } from "./TextInput-66ab7a8d.mjs";
 import { _ as _sfc_main$1 } from "./Dropdown-d2a4ee41.mjs";
@@ -13,11 +13,17 @@ const _sfc_main = {
   __name: "Index",
   __ssrInlineRender: true,
   props: {
-    commentId: Number,
-    commentContent: String,
-    commentAuthor: String,
-    commentorUsername: String,
-    canUpdateComment: Boolean,
+    comment: {
+      type: Object,
+      default: {
+        id: 0,
+        content: "",
+        author: "",
+        authorUsername: "",
+        canLikeComment: false,
+        canUpdateComment: false
+      }
+    },
     replies: {
       type: Array,
       default: []
@@ -32,16 +38,18 @@ const _sfc_main = {
     });
     const page = ref(2);
     const { data: allReplies, loading } = useFetch(
-      route("comments.replies", props.commentId),
+      route("comments.replies", props.comment.id),
       page,
       props.replies
     );
     const storeReply = () => {
-      form.post(route("comments.replies.store", props.commentId), {
+      form.post(route("comments.replies.store", props.comment.id), {
         preserveScroll: true,
         onSuccess: () => {
           const mergedArray = [...props.replies, ...allReplies.value];
-          allReplies.value = Array.from(new Set(mergedArray.map((obj) => obj.id))).map((id) => mergedArray.find((obj) => obj.id === id));
+          allReplies.value = Array.from(
+            new Set(mergedArray.map((obj) => obj.id))
+          ).map((id) => mergedArray.find((obj) => obj.id === id));
           form.reset();
         },
         onError: () => {
@@ -54,6 +62,15 @@ const _sfc_main = {
     };
     const back = () => {
       window.history.back();
+    };
+    ref(properities.comment.canLikeComment);
+    const handleLikeReply = (key) => {
+      allReplies.value[key].canLikeReply = !allReplies.value[key].canLikeReply;
+      allReplies.value[key].likes++;
+    };
+    const handleUnlikeReply = (key) => {
+      allReplies.value[key].canLikeReply = !allReplies.value[key].canLikeReply;
+      allReplies.value[key].likes--;
     };
     const deleteCommentForm = useForm({
       component
@@ -85,7 +102,7 @@ const _sfc_main = {
         }
       });
     }
-    function handleDeleteReply(commentId, replyId) {
+    function handleDeleteReply(id, replyId) {
       swal({
         title: properities.words.are_you_sure,
         text: properities.words.once_deleted_reply,
@@ -95,7 +112,7 @@ const _sfc_main = {
       }).then((willDelete) => {
         if (willDelete) {
           deleteReplyForm.delete(
-            route("comments.replies.delete", [commentId, replyId]),
+            route("comments.replies.delete", [id, replyId]),
             {
               preserveScroll: true,
               onSuccess: () => {
@@ -108,10 +125,7 @@ const _sfc_main = {
                 form.reset("content");
               },
               onError: (error) => {
-                swal(
-                  properities.words.something_went_wrong,
-                  error.message
-                );
+                swal(properities.words.something_went_wrong, error.message);
               }
             }
           );
@@ -128,9 +142,9 @@ const _sfc_main = {
       _push(ssrRenderComponent(AuthLayout, null, {
         content: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            if (unref(props).commentId) {
+            if (unref(props).comment.id) {
               _push2(`<section class="relative py-6 mb-4 rounded-lg bg-zinc-800 text-white"${_scopeId}>`);
-              if (unref(props).canUpdateComment) {
+              if (unref(props).comment.canUpdateComment) {
                 _push2(`<section class="absolute right-4 top-2"${_scopeId}>`);
                 _push2(ssrRenderComponent(_sfc_main$1, { width: "48" }, {
                   trigger: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -164,7 +178,7 @@ const _sfc_main = {
                     if (_push3) {
                       _push3(`<button class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"${_scopeId2}>${ssrInterpolate(_ctx.$page.props.words.delete)}</button>`);
                       _push3(ssrRenderComponent(unref(Link), {
-                        href: _ctx.route("comments.edit", unref(props).commentId),
+                        href: _ctx.route("comments.edit", unref(props).comment.id),
                         as: "button",
                         class: "block w-full text-green-500 ml-auto hover:green-red-800 text-lg hover:underline"
                       }, {
@@ -182,11 +196,11 @@ const _sfc_main = {
                     } else {
                       return [
                         createVNode("button", {
-                          onClick: ($event) => handleDeleteComment(unref(props).commentId),
+                          onClick: ($event) => handleDeleteComment(unref(props).comment.id),
                           class: "block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"
                         }, toDisplayString(_ctx.$page.props.words.delete), 9, ["onClick"]),
                         createVNode(unref(Link), {
-                          href: _ctx.route("comments.edit", unref(props).commentId),
+                          href: _ctx.route("comments.edit", unref(props).comment.id),
                           as: "button",
                           class: "block w-full text-green-500 ml-auto hover:green-red-800 text-lg hover:underline"
                         }, {
@@ -205,22 +219,22 @@ const _sfc_main = {
                 _push2(`<!---->`);
               }
               _push2(ssrRenderComponent(unref(Link), {
-                href: _ctx.route("user.profile", unref(props).commentorUsername),
+                href: _ctx.route("user.profile", unref(props).comment.authorUsername),
                 as: "button",
                 class: "text-gray-300 px-2 font-bold hover:text-gray-50 text-lg hover:underline"
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
-                    _push3(`${ssrInterpolate(unref(props).commentAuthor)}`);
+                    _push3(`${ssrInterpolate(unref(props).comment.author)}`);
                   } else {
                     return [
-                      createTextVNode(toDisplayString(unref(props).commentAuthor), 1)
+                      createTextVNode(toDisplayString(unref(props).comment.author), 1)
                     ];
                   }
                 }),
                 _: 1
               }, _parent2, _scopeId));
-              _push2(`<p class="mt-3 px-4"${_scopeId}>${unref(props).commentContent}</p><form class="bg-zinc-700 mt-6 mx-2 space-y-6 p-2 rounded-lg"${_scopeId}><div${_scopeId}>`);
+              _push2(`<p class="mt-3 px-4"${_scopeId}>${unref(props).comment.content}</p><form class="bg-zinc-700 mt-6 mx-2 space-y-6 p-2 rounded-lg"${_scopeId}><div${_scopeId}>`);
               _push2(ssrRenderComponent(_sfc_main$2, {
                 id: "content",
                 ref_key: "contentInput",
@@ -244,7 +258,7 @@ const _sfc_main = {
               _push2(`</div></form>`);
               if (unref(allReplies).length >= 1) {
                 _push2(`<section class="py-4 my-4 border border-zinc-700 rounded-lg bg-zinc-700 text-white"${_scopeId}><p class="px-2"${_scopeId}>${ssrInterpolate(_ctx.$page.props.words.the_replies)}:</p><section class="py-3 px-1"${_scopeId}><!--[-->`);
-                ssrRenderList(unref(allReplies), (reply) => {
+                ssrRenderList(unref(allReplies), (reply, key) => {
                   _push2(`<div class="my-2 p-2 rounded-lg relative bg-zinc-800"${_scopeId}>`);
                   _push2(ssrRenderComponent(unref(Link), {
                     href: _ctx.route("user.profile", reply.author),
@@ -275,7 +289,10 @@ const _sfc_main = {
                   }, _parent2, _scopeId));
                   _push2(`<p class="indent-3 mt-4 pb-2 border-b"${_scopeId}>${ssrInterpolate(reply.content)}</p><div class="flex justify-between px-6 py-2 my-1"${_scopeId}>`);
                   _push2(ssrRenderComponent(unref(Link), {
-                    href: _ctx.route("comments.replies.likes", [unref(props).commentId, reply.id]),
+                    href: _ctx.route("comments.replies.likes", [
+                      unref(props).comment.id,
+                      reply.id
+                    ]),
                     class: "text-gray-300 hover:text-gray-50 text-lg hover:underline"
                   }, {
                     default: withCtx((_2, _push3, _parent3, _scopeId2) => {
@@ -293,9 +310,10 @@ const _sfc_main = {
                     _push2(ssrRenderComponent(unref(Link), {
                       "preserve-scroll": true,
                       href: _ctx.route("comments.replies.likes.store", [
-                        unref(props).commentId,
+                        unref(props).comment.id,
                         reply.id
                       ]),
+                      onClick: ($event) => handleLikeReply(key),
                       method: "post",
                       as: "button",
                       class: "btn btn-success"
@@ -318,9 +336,10 @@ const _sfc_main = {
                     _push2(ssrRenderComponent(unref(Link), {
                       "preserve-scroll": true,
                       href: _ctx.route("comments.replies.likes.delete", [
-                        unref(props).commentId,
+                        unref(props).comment.id,
                         reply.id
                       ]),
+                      onClick: ($event) => handleUnlikeReply(key),
                       method: "delete",
                       as: "button",
                       class: "btn btn-danger"
@@ -375,7 +394,7 @@ const _sfc_main = {
                           _push3(`<button class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"${_scopeId2}>${ssrInterpolate(_ctx.$page.props.words.delete)}</button>`);
                           _push3(ssrRenderComponent(unref(Link), {
                             href: _ctx.route("comments.replies.edit", [
-                              unref(props).commentId,
+                              unref(props).comment.id,
                               reply.id
                             ]),
                             as: "button",
@@ -395,12 +414,12 @@ const _sfc_main = {
                         } else {
                           return [
                             createVNode("button", {
-                              onClick: ($event) => handleDeleteReply(unref(props).commentId, reply.id),
+                              onClick: ($event) => handleDeleteReply(unref(props).comment.id, reply.id),
                               class: "block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"
                             }, toDisplayString(_ctx.$page.props.words.delete), 9, ["onClick"]),
                             createVNode(unref(Link), {
                               href: _ctx.route("comments.replies.edit", [
-                                unref(props).commentId,
+                                unref(props).comment.id,
                                 reply.id
                               ]),
                               as: "button",
@@ -438,11 +457,11 @@ const _sfc_main = {
             }
           } else {
             return [
-              unref(props).commentId ? (openBlock(), createBlock("section", {
+              unref(props).comment.id ? (openBlock(), createBlock("section", {
                 key: 0,
                 class: "relative py-6 mb-4 rounded-lg bg-zinc-800 text-white"
               }, [
-                unref(props).canUpdateComment ? (openBlock(), createBlock("section", {
+                unref(props).comment.canUpdateComment ? (openBlock(), createBlock("section", {
                   key: 0,
                   class: "absolute right-4 top-2"
                 }, [
@@ -470,11 +489,11 @@ const _sfc_main = {
                     ]),
                     content: withCtx(() => [
                       createVNode("button", {
-                        onClick: ($event) => handleDeleteComment(unref(props).commentId),
+                        onClick: ($event) => handleDeleteComment(unref(props).comment.id),
                         class: "block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"
                       }, toDisplayString(_ctx.$page.props.words.delete), 9, ["onClick"]),
                       createVNode(unref(Link), {
-                        href: _ctx.route("comments.edit", unref(props).commentId),
+                        href: _ctx.route("comments.edit", unref(props).comment.id),
                         as: "button",
                         class: "block w-full text-green-500 ml-auto hover:green-red-800 text-lg hover:underline"
                       }, {
@@ -488,18 +507,18 @@ const _sfc_main = {
                   })
                 ])) : createCommentVNode("", true),
                 createVNode(unref(Link), {
-                  href: _ctx.route("user.profile", unref(props).commentorUsername),
+                  href: _ctx.route("user.profile", unref(props).comment.authorUsername),
                   as: "button",
                   class: "text-gray-300 px-2 font-bold hover:text-gray-50 text-lg hover:underline"
                 }, {
                   default: withCtx(() => [
-                    createTextVNode(toDisplayString(unref(props).commentAuthor), 1)
+                    createTextVNode(toDisplayString(unref(props).comment.author), 1)
                   ]),
                   _: 1
                 }, 8, ["href"]),
                 createVNode("p", {
                   class: "mt-3 px-4",
-                  innerHTML: unref(props).commentContent
+                  innerHTML: unref(props).comment.content
                 }, null, 8, ["innerHTML"]),
                 createVNode("form", {
                   onSubmit: withModifiers(storeReply, ["prevent"]),
@@ -547,7 +566,7 @@ const _sfc_main = {
                 }, [
                   createVNode("p", { class: "px-2" }, toDisplayString(_ctx.$page.props.words.the_replies) + ":", 1),
                   createVNode("section", { class: "py-3 px-1" }, [
-                    (openBlock(true), createBlock(Fragment, null, renderList(unref(allReplies), (reply) => {
+                    (openBlock(true), createBlock(Fragment, null, renderList(unref(allReplies), (reply, key) => {
                       return openBlock(), createBlock("div", {
                         key: reply.id,
                         class: "my-2 p-2 rounded-lg relative bg-zinc-800"
@@ -571,7 +590,10 @@ const _sfc_main = {
                         createVNode("p", { class: "indent-3 mt-4 pb-2 border-b" }, toDisplayString(reply.content), 1),
                         createVNode("div", { class: "flex justify-between px-6 py-2 my-1" }, [
                           createVNode(unref(Link), {
-                            href: _ctx.route("comments.replies.likes", [unref(props).commentId, reply.id]),
+                            href: _ctx.route("comments.replies.likes", [
+                              unref(props).comment.id,
+                              reply.id
+                            ]),
                             class: "text-gray-300 hover:text-gray-50 text-lg hover:underline"
                           }, {
                             default: withCtx(() => [
@@ -583,9 +605,10 @@ const _sfc_main = {
                             key: 0,
                             "preserve-scroll": true,
                             href: _ctx.route("comments.replies.likes.store", [
-                              unref(props).commentId,
+                              unref(props).comment.id,
                               reply.id
                             ]),
+                            onClick: ($event) => handleLikeReply(key),
                             method: "post",
                             as: "button",
                             class: "btn btn-success"
@@ -594,14 +617,15 @@ const _sfc_main = {
                               createTextVNode(toDisplayString(_ctx.$page.props.words.like), 1)
                             ]),
                             _: 2
-                          }, 1032, ["href"])) : createCommentVNode("", true),
+                          }, 1032, ["href", "onClick"])) : createCommentVNode("", true),
                           !reply.canLikeReply ? (openBlock(), createBlock(unref(Link), {
                             key: 1,
                             "preserve-scroll": true,
                             href: _ctx.route("comments.replies.likes.delete", [
-                              unref(props).commentId,
+                              unref(props).comment.id,
                               reply.id
                             ]),
+                            onClick: ($event) => handleUnlikeReply(key),
                             method: "delete",
                             as: "button",
                             class: "btn btn-danger"
@@ -610,7 +634,7 @@ const _sfc_main = {
                               createTextVNode(toDisplayString(_ctx.$page.props.words.unlike), 1)
                             ]),
                             _: 2
-                          }, 1032, ["href"])) : createCommentVNode("", true)
+                          }, 1032, ["href", "onClick"])) : createCommentVNode("", true)
                         ]),
                         reply.canUpdateReply ? (openBlock(), createBlock("section", {
                           key: 0,
@@ -640,12 +664,12 @@ const _sfc_main = {
                             ]),
                             content: withCtx(() => [
                               createVNode("button", {
-                                onClick: ($event) => handleDeleteReply(unref(props).commentId, reply.id),
+                                onClick: ($event) => handleDeleteReply(unref(props).comment.id, reply.id),
                                 class: "block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2"
                               }, toDisplayString(_ctx.$page.props.words.delete), 9, ["onClick"]),
                               createVNode(unref(Link), {
                                 href: _ctx.route("comments.replies.edit", [
-                                  unref(props).commentId,
+                                  unref(props).comment.id,
                                   reply.id
                                 ]),
                                 as: "button",

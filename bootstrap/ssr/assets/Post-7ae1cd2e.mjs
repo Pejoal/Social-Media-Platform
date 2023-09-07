@@ -1,7 +1,7 @@
 import { unref, withCtx, createVNode, toDisplayString, openBlock, createBlock, createCommentVNode, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
-import { P as Post } from "./Post-bac3ab7b.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
+import { P as Post } from "./Post-53712adf.mjs";
 import { Head } from "@inertiajs/vue3";
 import "./Hamburger-c1553109.mjs";
 import "./Dropdown-d2a4ee41.mjs";

@@ -1,9 +1,102 @@
-import { ref, unref, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, Fragment, renderList, useSSRContext } from "vue";
-import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
+import { unref, mergeProps, withCtx, renderSlot, useSSRContext, computed, ref, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, Fragment, renderList } from "vue";
+import { ssrRenderComponent, ssrRenderSlot, ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass } from "vue/server-renderer";
 import { A as ApplicationLogo } from "./ApplicationLogo-8b847249.mjs";
-import { _ as _sfc_main$2 } from "./Dropdown-d2a4ee41.mjs";
-import { _ as _sfc_main$1, a as _sfc_main$3, b as _sfc_main$4 } from "./ResponsiveNavLink-e9956cf9.mjs";
-import { usePage, Link } from "@inertiajs/vue3";
+import { _ as _sfc_main$4 } from "./Dropdown-d2a4ee41.mjs";
+import { Link, usePage } from "@inertiajs/vue3";
+const _sfc_main$3 = {
+  __name: "DropdownLink",
+  __ssrInlineRender: true,
+  setup(__props) {
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(ssrRenderComponent(unref(Link), mergeProps({ class: "block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" }, _attrs), {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
+          } else {
+            return [
+              renderSlot(_ctx.$slots, "default")
+            ];
+          }
+        }),
+        _: 3
+      }, _parent));
+    };
+  }
+};
+const _sfc_setup$3 = _sfc_main$3.setup;
+_sfc_main$3.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/DropdownLink.vue");
+  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+};
+const _sfc_main$2 = {
+  __name: "NavLink",
+  __ssrInlineRender: true,
+  props: ["href", "active"],
+  setup(__props) {
+    const props = __props;
+    const classes = computed(
+      () => props.active ? "inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out" : "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
+    );
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(ssrRenderComponent(unref(Link), mergeProps({
+        href: __props.href,
+        class: unref(classes)
+      }, _attrs), {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
+          } else {
+            return [
+              renderSlot(_ctx.$slots, "default")
+            ];
+          }
+        }),
+        _: 3
+      }, _parent));
+    };
+  }
+};
+const _sfc_setup$2 = _sfc_main$2.setup;
+_sfc_main$2.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/NavLink.vue");
+  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
+};
+const _sfc_main$1 = {
+  __name: "ResponsiveNavLink",
+  __ssrInlineRender: true,
+  props: ["href", "active"],
+  setup(__props) {
+    const props = __props;
+    const classes = computed(
+      () => props.active ? "block w-full pl-3 pr-4 py-2 border-l-4 border-indigo-400 text-left text-base font-medium text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out" : "block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out"
+    );
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(ssrRenderComponent(unref(Link), mergeProps({
+        href: __props.href,
+        class: unref(classes)
+      }, _attrs), {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            ssrRenderSlot(_ctx.$slots, "default", {}, null, _push2, _parent2, _scopeId);
+          } else {
+            return [
+              renderSlot(_ctx.$slots, "default")
+            ];
+          }
+        }),
+        _: 3
+      }, _parent));
+    };
+  }
+};
+const _sfc_setup$1 = _sfc_main$1.setup;
+_sfc_main$1.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/ResponsiveNavLink.vue");
+  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
+};
 const _sfc_main = {
   __name: "AuthenticatedLayout",
   __ssrInlineRender: true,
@@ -27,7 +120,7 @@ const _sfc_main = {
         _: 1
       }, _parent));
       _push(`</div><div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">`);
-      _push(ssrRenderComponent(_sfc_main$1, {
+      _push(ssrRenderComponent(_sfc_main$2, {
         href: _ctx.route("home"),
         active: _ctx.route().current("home") || _ctx.route().current("")
       }, {
@@ -42,7 +135,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(_sfc_main$1, {
+      _push(ssrRenderComponent(_sfc_main$2, {
         href: _ctx.route("public.chat.index"),
         active: _ctx.route().current("public.chat.index")
       }, {
@@ -57,7 +150,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(_sfc_main$1, {
+      _push(ssrRenderComponent(_sfc_main$2, {
         href: _ctx.route("rooms.index"),
         active: _ctx.route().current("rooms.*")
       }, {
@@ -73,7 +166,7 @@ const _sfc_main = {
         _: 1
       }, _parent));
       if (unref(user).type == "super admin") {
-        _push(ssrRenderComponent(_sfc_main$1, {
+        _push(ssrRenderComponent(_sfc_main$2, {
           href: _ctx.route("dashboard.index"),
           active: _ctx.route().current("dashboard.index")
         }, {
@@ -92,7 +185,7 @@ const _sfc_main = {
         _push(`<!---->`);
       }
       _push(`</div></div><div class="relative">`);
-      _push(ssrRenderComponent(_sfc_main$2, { width: "48" }, {
+      _push(ssrRenderComponent(_sfc_main$4, { width: "48" }, {
         trigger: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(`<span class="inline-flex rounded-md"${_scopeId}><button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"${_scopeId}><svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"${_scopeId}><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"${_scopeId}></path></svg></button></span>`);
@@ -146,7 +239,7 @@ const _sfc_main = {
         _: 1
       }, _parent));
       _push(`</div><div class="hidden sm:flex sm:items-center sm:ml-6"><div class="ml-3 relative">`);
-      _push(ssrRenderComponent(_sfc_main$2, {
+      _push(ssrRenderComponent(_sfc_main$4, {
         align: "right",
         width: "48"
       }, {
@@ -245,7 +338,7 @@ const _sfc_main = {
         block: showingNavigationDropdown.value,
         hidden: !showingNavigationDropdown.value
       }, "sm:hidden"])}"><div class="flex px-2">`);
-      _push(ssrRenderComponent(_sfc_main$4, {
+      _push(ssrRenderComponent(_sfc_main$1, {
         href: _ctx.route("home"),
         active: _ctx.route().current("home")
       }, {
@@ -260,7 +353,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(_sfc_main$4, {
+      _push(ssrRenderComponent(_sfc_main$1, {
         href: _ctx.route("public.chat.index"),
         active: _ctx.route().current("public.chat.index")
       }, {
@@ -275,7 +368,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(_sfc_main$4, {
+      _push(ssrRenderComponent(_sfc_main$1, {
         href: _ctx.route("rooms.index"),
         active: _ctx.route().current("rooms.*")
       }, {
@@ -291,7 +384,7 @@ const _sfc_main = {
         _: 1
       }, _parent));
       if (unref(user).type == "super admin") {
-        _push(ssrRenderComponent(_sfc_main$4, {
+        _push(ssrRenderComponent(_sfc_main$1, {
           href: _ctx.route("dashboard.index"),
           active: _ctx.route().current("dashboard.index")
         }, {
@@ -310,7 +403,7 @@ const _sfc_main = {
         _push(`<!---->`);
       }
       _push(`</div><div class="pt-4 pb-1 border-t border-gray-200"><div class="px-4"><div class="font-medium text-base text-gray-800">${ssrInterpolate(_ctx.$page.props.auth.user.name)}</div><div class="font-medium text-sm text-gray-500">${ssrInterpolate(_ctx.$page.props.auth.user.email)}</div></div><div class="mt-3 space-y-1">`);
-      _push(ssrRenderComponent(_sfc_main$4, {
+      _push(ssrRenderComponent(_sfc_main$1, {
         href: _ctx.route("profile.edit")
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -324,7 +417,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(_sfc_main$4, {
+      _push(ssrRenderComponent(_sfc_main$1, {
         href: _ctx.route("logout"),
         method: "post",
         as: "button"

@@ -1,6 +1,6 @@
 import { ref, unref, withCtx, createVNode, resolveDynamicComponent, openBlock, createBlock, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderList, ssrRenderClass, ssrInterpolate, ssrRenderVNode } from "vue/server-renderer";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-ff6b425d.mjs";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-9e25e56d.mjs";
 import { Head } from "@inertiajs/vue3";
 import Home from "./Home-9cb577a9.mjs";
 import Posts from "./Posts-a22bfe22.mjs";
@@ -8,7 +8,6 @@ import Archive from "./Archive-74f7d056.mjs";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.mjs";
 import "./ApplicationLogo-8b847249.mjs";
 import "./Dropdown-d2a4ee41.mjs";
-import "./ResponsiveNavLink-e9956cf9.mjs";
 const Index_vue_vue_type_style_index_0_scoped_65bae740_lang = "";
 const _sfc_main = {
   __name: "Index",

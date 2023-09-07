@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import { L as Loading } from "./Loading-c0e5699a.mjs";
 import { u as useFetch } from "./utils-a971894e.mjs";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.mjs";
-const Post_vue_vue_type_style_index_0_scoped_c45ecd52_lang = "";
+const Post_vue_vue_type_style_index_0_scoped_55ee9323_lang = "";
 const _sfc_main = {
   __name: "Post",
   __ssrInlineRender: true,
@@ -30,22 +30,22 @@ const _sfc_main = {
       page,
       comments
     ));
-    function handleLikePost() {
+    const handleLikePost = () => {
       canLikePost.value = !canLikePost.value;
       postLikes.value++;
-    }
-    function handleUnlikePost() {
+    };
+    const handleUnlikePost = () => {
       canLikePost.value = !canLikePost.value;
       postLikes.value--;
-    }
-    function handleLikeComment(key) {
+    };
+    const handleLikeComment = (key) => {
       allComments.value[key].canLikeComment = !allComments.value[key].canLikeComment;
       allComments.value[key].likes++;
-    }
-    function handleUnlikeComment(key) {
+    };
+    const handleUnlikeComment = (key) => {
       allComments.value[key].canLikeComment = !allComments.value[key].canLikeComment;
       allComments.value[key].likes--;
-    }
+    };
     const commentForm = useForm({
       content: ""
     });
@@ -108,7 +108,7 @@ const _sfc_main = {
       });
     }
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<main${ssrRenderAttrs(mergeProps({ class: "relative" }, _attrs))} data-v-c45ecd52><section class="flex gap-12 ml-2 py-2" data-v-c45ecd52>`);
+      _push(`<main${ssrRenderAttrs(mergeProps({ class: "relative" }, _attrs))} data-v-55ee9323><section class="flex gap-12 ml-2 py-2" data-v-55ee9323>`);
       _push(ssrRenderComponent(unref(Link), {
         href: _ctx.route("user.profile", properities.post.username),
         as: "button",
@@ -117,7 +117,7 @@ const _sfc_main = {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             if (properities.post.authorPhoto) {
-              _push2(`<img class="w-10 h-10 md:w-14 md:h-14 rounded-full"${ssrRenderAttr("src", properities.post.authorPhoto)}${ssrRenderAttr("alt", _ctx.$page.props.words.profile_photo)} data-v-c45ecd52${_scopeId}>`);
+              _push2(`<img class="w-10 h-10 md:w-14 md:h-14 rounded-full"${ssrRenderAttr("src", properities.post.authorPhoto)}${ssrRenderAttr("alt", _ctx.$page.props.words.profile_photo)} data-v-55ee9323${_scopeId}>`);
             } else {
               _push2(`<!---->`);
             }
@@ -136,7 +136,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(`</section><p class="ml-2 my-1" data-v-c45ecd52>${ssrInterpolate(properities.post.title)}</p><div class="pl-6 my-2" data-v-c45ecd52>${ssrInterpolate(properities.post.content)} <div class="text-green-500 float-right pt-6 px-4" data-v-c45ecd52>${ssrInterpolate(properities.post.created_at)}</div></div><div class="clear-both" data-v-c45ecd52></div><section class="flex justify-between items-center px-4" data-v-c45ecd52>`);
+      _push(`</section><p class="ml-2 my-1" data-v-55ee9323>${ssrInterpolate(properities.post.title)}</p><div class="pl-6 my-2" data-v-55ee9323>${ssrInterpolate(properities.post.content)} <div class="text-green-500 float-right pt-6 px-4" data-v-55ee9323>${ssrInterpolate(properities.post.created_at)}</div></div><div class="clear-both" data-v-55ee9323></div><section class="flex justify-between items-center px-4" data-v-55ee9323>`);
       _push(ssrRenderComponent(unref(Link), {
         href: _ctx.route("posts.likes", properities.post),
         class: "text-gray-300 hover:text-gray-50 text-lg hover:underline"
@@ -167,7 +167,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(`</section><section class="grid place-items-center" data-v-c45ecd52>`);
+      _push(`</section><section class="grid place-items-center" data-v-55ee9323>`);
       if (canLikePost.value) {
         _push(ssrRenderComponent(unref(Link), {
           "preserve-scroll": true,
@@ -211,14 +211,14 @@ const _sfc_main = {
       }
       _push(`</section>`);
       if (unref(component) === "User/Post") {
-        _push(`<form class="my-3" data-v-c45ecd52><div class="grid place-items-center" data-v-c45ecd52><textarea id="content" required autofocus${ssrRenderAttr("placeholder", _ctx.$page.props.words.comment)} class="text-black rounded-lg py-2 px-4 my-2 w-3/4 h-24" data-v-c45ecd52>${ssrInterpolate(unref(commentForm).content)}</textarea>`);
+        _push(`<form class="my-3" data-v-55ee9323><div class="grid place-items-center" data-v-55ee9323><textarea id="content" required autofocus${ssrRenderAttr("placeholder", _ctx.$page.props.words.comment)} class="text-black rounded-lg py-2 px-4 my-2 w-3/4 h-24" data-v-55ee9323>${ssrInterpolate(unref(commentForm).content)}</textarea>`);
         _push(ssrRenderComponent(_sfc_main$1, {
           class: "my-2 px-4 py-2 bg-slate-100 rounded-lg",
           message: unref(commentForm).errors.content
         }, null, _parent));
-        _push(`<button class="${ssrRenderClass([{ "opacity-25": unref(commentForm).processing }, "btn btn-primary"])}"${ssrIncludeBooleanAttr(unref(commentForm).processing) ? " disabled" : ""} data-v-c45ecd52>${ssrInterpolate(_ctx.$page.props.words.comment)}</button>`);
+        _push(`<button class="${ssrRenderClass([{ "opacity-25": unref(commentForm).processing }, "btn btn-primary"])}"${ssrIncludeBooleanAttr(unref(commentForm).processing) ? " disabled" : ""} data-v-55ee9323>${ssrInterpolate(_ctx.$page.props.words.comment)}</button>`);
         if (unref(commentForm).recentlySuccessful) {
-          _push(`<p class="text-sm my-1 text-white" data-v-c45ecd52>${ssrInterpolate(_ctx.$page.props.words.created)}</p>`);
+          _push(`<p class="text-sm my-1 text-white" data-v-55ee9323>${ssrInterpolate(_ctx.$page.props.words.created)}</p>`);
         } else {
           _push(`<!---->`);
         }
@@ -227,11 +227,11 @@ const _sfc_main = {
         _push(`<!---->`);
       }
       if (properities.post.canUpdatePost) {
-        _push(`<div class="absolute right-4 top-2" data-v-c45ecd52>`);
+        _push(`<div class="absolute right-4 top-2" data-v-55ee9323>`);
         _push(ssrRenderComponent(_sfc_main$2, { width: "48" }, {
           trigger: withCtx((_, _push2, _parent2, _scopeId) => {
             if (_push2) {
-              _push2(`<span class="inline-flex rounded-md" data-v-c45ecd52${_scopeId}><button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150" data-v-c45ecd52${_scopeId}><svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" data-v-c45ecd52${_scopeId}><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" data-v-c45ecd52${_scopeId}></path></svg></button></span>`);
+              _push2(`<span class="inline-flex rounded-md" data-v-55ee9323${_scopeId}><button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150" data-v-55ee9323${_scopeId}><svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" data-v-55ee9323${_scopeId}><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" data-v-55ee9323${_scopeId}></path></svg></button></span>`);
             } else {
               return [
                 createVNode("span", { class: "inline-flex rounded-md" }, [
@@ -258,7 +258,7 @@ const _sfc_main = {
           }),
           content: withCtx((_, _push2, _parent2, _scopeId) => {
             if (_push2) {
-              _push2(`<button class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2" data-v-c45ecd52${_scopeId}>${ssrInterpolate(_ctx.$page.props.words.delete)}</button>`);
+              _push2(`<button class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2" data-v-55ee9323${_scopeId}>${ssrInterpolate(_ctx.$page.props.words.delete)}</button>`);
               _push2(ssrRenderComponent(unref(Link), {
                 href: _ctx.route("user.posts.edit", properities.post.id),
                 as: "button",
@@ -301,9 +301,9 @@ const _sfc_main = {
         _push(`<!---->`);
       }
       if (unref(allComments).length >= 1) {
-        _push(`<section class="bg-stone-800 py-2 rounded-lg" data-v-c45ecd52><h2 class="text-lg indent-4" data-v-c45ecd52>${ssrInterpolate(_ctx.$page.props.words.comments)}</h2><!--[-->`);
+        _push(`<section class="bg-stone-800 py-2 rounded-lg" data-v-55ee9323><h2 class="text-lg indent-4" data-v-55ee9323>${ssrInterpolate(_ctx.$page.props.words.comments)}</h2><!--[-->`);
         ssrRenderList(unref(allComments), (comment, key) => {
-          _push(`<section class="flex flex-col gap-4 my-2 py-2 px-4 bg-zinc-900 rounded-lg relative"${ssrRenderAttr("id", comment.id)} data-v-c45ecd52>`);
+          _push(`<section class="flex flex-col gap-4 my-2 py-2 px-4 bg-zinc-900 rounded-lg relative"${ssrRenderAttr("id", comment.id)} data-v-55ee9323>`);
           _push(ssrRenderComponent(unref(Link), {
             href: _ctx.route("user.profile", comment.authorUsername),
             as: "button",
@@ -312,7 +312,7 @@ const _sfc_main = {
             default: withCtx((_, _push2, _parent2, _scopeId) => {
               if (_push2) {
                 if (comment.authorPhoto) {
-                  _push2(`<img class="w-10 h-10 md:w-14 md:h-14 rounded-full"${ssrRenderAttr("src", comment.authorPhoto)}${ssrRenderAttr("alt", _ctx.$page.props.words.profile_photo)} data-v-c45ecd52${_scopeId}>`);
+                  _push2(`<img class="w-10 h-10 md:w-14 md:h-14 rounded-full"${ssrRenderAttr("src", comment.authorPhoto)}${ssrRenderAttr("alt", _ctx.$page.props.words.profile_photo)} data-v-55ee9323${_scopeId}>`);
                 } else {
                   _push2(`<!---->`);
                 }
@@ -331,7 +331,7 @@ const _sfc_main = {
             }),
             _: 2
           }, _parent));
-          _push(`<p class="indent-4" data-v-c45ecd52>${ssrInterpolate(comment.content)}</p><div class="flex flex-col gap-6 px-4" data-v-c45ecd52><section class="flex justify-between py-3 border-t" data-v-c45ecd52>`);
+          _push(`<p class="indent-4" data-v-55ee9323>${ssrInterpolate(comment.content)}</p><div class="flex flex-col gap-6 px-4" data-v-55ee9323><section class="flex justify-between py-3 border-t" data-v-55ee9323>`);
           _push(ssrRenderComponent(unref(Link), {
             href: _ctx.route("comments.likes", comment),
             class: "text-gray-300 hover:text-gray-50 text-lg hover:underline"
@@ -410,11 +410,11 @@ const _sfc_main = {
           }
           _push(`</section>`);
           if (comment.canUpdateComment) {
-            _push(`<section class="absolute right-4 top-2" data-v-c45ecd52>`);
+            _push(`<section class="absolute right-4 top-2" data-v-55ee9323>`);
             _push(ssrRenderComponent(_sfc_main$2, { width: "48" }, {
               trigger: withCtx((_, _push2, _parent2, _scopeId) => {
                 if (_push2) {
-                  _push2(`<span class="inline-flex rounded-md" data-v-c45ecd52${_scopeId}><button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150" data-v-c45ecd52${_scopeId}><svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" data-v-c45ecd52${_scopeId}><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" data-v-c45ecd52${_scopeId}></path></svg></button></span>`);
+                  _push2(`<span class="inline-flex rounded-md" data-v-55ee9323${_scopeId}><button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150" data-v-55ee9323${_scopeId}><svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" data-v-55ee9323${_scopeId}><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" data-v-55ee9323${_scopeId}></path></svg></button></span>`);
                 } else {
                   return [
                     createVNode("span", { class: "inline-flex rounded-md" }, [
@@ -441,7 +441,7 @@ const _sfc_main = {
               }),
               content: withCtx((_, _push2, _parent2, _scopeId) => {
                 if (_push2) {
-                  _push2(`<button class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2" data-v-c45ecd52${_scopeId}>${ssrInterpolate(_ctx.$page.props.words.delete)}</button>`);
+                  _push2(`<button class="block w-full text-red-400 hover:text-red-500 text-lg hover:underline px-4 py-2" data-v-55ee9323${_scopeId}>${ssrInterpolate(_ctx.$page.props.words.delete)}</button>`);
                   _push2(ssrRenderComponent(unref(Link), {
                     href: _ctx.route("comments.edit", comment.id),
                     as: "button",
@@ -505,7 +505,7 @@ _sfc_main.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Post.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const Post = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-c45ecd52"]]);
+const Post = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-55ee9323"]]);
 export {
   Post as P
 };

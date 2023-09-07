@@ -1,6 +1,6 @@
 import { ref, unref, withCtx, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrRenderList, ssrInterpolate } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
 import { Head } from "@inertiajs/vue3";
 import { u as useFetch } from "./utils-a971894e.mjs";
 import { L as Loading } from "./Loading-c0e5699a.mjs";

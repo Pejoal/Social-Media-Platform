@@ -1,11 +1,10 @@
 import { unref, withCtx, createVNode, useSSRContext } from "vue";
 import { ssrRenderComponent } from "vue/server-renderer";
-import { _ as _sfc_main$1 } from "./AuthenticatedLayout-ff6b425d.mjs";
+import { _ as _sfc_main$1 } from "./AuthenticatedLayout-9e25e56d.mjs";
 import { Head } from "@inertiajs/vue3";
 import "./ApplicationLogo-8b847249.mjs";
 import "./_plugin-vue_export-helper-cc2b3d55.mjs";
 import "./Dropdown-d2a4ee41.mjs";
-import "./ResponsiveNavLink-e9956cf9.mjs";
 const _sfc_main = {
   __name: "Dashboard",
   __ssrInlineRender: true,

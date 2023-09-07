@@ -1,10 +1,11 @@
 import { ref, watch, unref, withCtx, createVNode, toDisplayString, withDirectives, isRef, vModelText, openBlock, createBlock, Fragment, renderList, createCommentVNode, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderList } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
-import { P as Post } from "./Post-bac3ab7b.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
+import { P as Post } from "./Post-53712adf.mjs";
 import { L as Loading } from "./Loading-c0e5699a.mjs";
 import { Head } from "@inertiajs/vue3";
 import { u as useFetch } from "./utils-a971894e.mjs";
+import "laravel-vue-i18n";
 import "./Hamburger-c1553109.mjs";
 import "./Dropdown-d2a4ee41.mjs";
 import "./_plugin-vue_export-helper-cc2b3d55.mjs";
@@ -25,6 +26,10 @@ const _sfc_main = {
       }
     },
     joined_chat_groups: {
+      type: Array,
+      default: []
+    },
+    projects: {
       type: Array,
       default: []
     }
@@ -86,7 +91,8 @@ const _sfc_main = {
       }, _parent));
       _push(ssrRenderComponent(AuthLayout, {
         onSetPosts: setPosts,
-        joined_chat_groups: props.joined_chat_groups
+        joined_chat_groups: props.joined_chat_groups,
+        projects: props.projects
       }, {
         "left-sidebar": withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2)
@@ -97,7 +103,7 @@ const _sfc_main = {
         }),
         content: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<section class="flex items-center justify-between px-4 md:px-0 pt-6 pb-4"${_scopeId}><button class="btn btn-primary"${_scopeId}>${ssrInterpolate(_ctx.$page.props.words.search)}</button><input class="py-2 px-4 rounded-xl text-black w-3/4" type="search" name="search"${ssrRenderAttr("placeholder", _ctx.$page.props.words.search + " " + _ctx.$page.props.appName)} id="search"${ssrRenderAttr("value", unref(search))}${_scopeId}></section>`);
+            _push2(`<section class="flex items-center justify-between px-4 md:px-0 pt-6 pb-4"${_scopeId}><button class="btn btn-primary"${_scopeId}>${ssrInterpolate(_ctx.$page.props.words.search)} </button><input class="py-2 px-4 rounded-xl text-black w-3/4" type="search" name="search"${ssrRenderAttr("placeholder", _ctx.$page.props.words.search + " " + _ctx.$page.props.appName)} id="search"${ssrRenderAttr("value", unref(search))}${_scopeId}></section>`);
             if (unref(allPosts).length >= 1) {
               _push2(`<section${_scopeId}><!--[-->`);
               ssrRenderList(unref(allPosts), (post) => {
@@ -124,7 +130,7 @@ const _sfc_main = {
                 createVNode("button", {
                   class: "btn btn-primary",
                   onClick: ($event) => doSearch(unref(search))
-                }, toDisplayString(_ctx.$page.props.words.search), 9, ["onClick"]),
+                }, toDisplayString(_ctx.$page.props.words.search) + " ", 9, ["onClick"]),
                 withDirectives(createVNode("input", {
                   class: "py-2 px-4 rounded-xl text-black w-3/4",
                   type: "search",

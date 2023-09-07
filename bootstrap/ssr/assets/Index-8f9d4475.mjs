@@ -1,6 +1,6 @@
 import { ref, unref, withCtx, createTextVNode, toDisplayString, createVNode, withDirectives, isRef, openBlock, createBlock, Fragment, renderList, vModelSelect, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttr } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
 import { Head, Link } from "@inertiajs/vue3";
 import "./Hamburger-c1553109.mjs";
 import "./Dropdown-d2a4ee41.mjs";

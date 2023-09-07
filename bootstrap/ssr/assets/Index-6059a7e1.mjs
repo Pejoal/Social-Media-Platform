@@ -1,6 +1,6 @@
 import { unref, withCtx, createVNode, useSSRContext } from "vue";
 import { ssrRenderComponent } from "vue/server-renderer";
-import { A as AuthLayout, _ as _sfc_main$1 } from "./AuthLayout-a31bd95f.mjs";
+import { A as AuthLayout, _ as _sfc_main$1 } from "./AuthLayout-18ded6d5.mjs";
 import { Head } from "@inertiajs/vue3";
 import "./Hamburger-c1553109.mjs";
 import "./Dropdown-d2a4ee41.mjs";

@@ -1,6 +1,6 @@
 import { ref, onMounted, mergeProps, useSSRContext, unref, withCtx, createVNode, toDisplayString, openBlock, createBlock, createCommentVNode, withDirectives, vShow, withModifiers, vModelText, Transition } from "vue";
 import { ssrRenderAttrs, ssrRenderAttr, ssrInterpolate, ssrRenderStyle, ssrRenderComponent, ssrIncludeBooleanAttr } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
 import { useForm, Head } from "@inertiajs/vue3";
 import Draggable from "vuedraggable";
 import "./Hamburger-c1553109.mjs";

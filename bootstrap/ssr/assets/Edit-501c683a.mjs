@@ -1,6 +1,6 @@
 import { unref, withCtx, createVNode, openBlock, createBlock, toDisplayString, withModifiers, withDirectives, vModelText, Transition, createCommentVNode, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
 import { usePage, useForm, Head } from "@inertiajs/vue3";
 import "./TextInput-66ab7a8d.mjs";
 import "./Hamburger-c1553109.mjs";

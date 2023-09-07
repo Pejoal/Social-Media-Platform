@@ -1,6 +1,6 @@
 import { onMounted, ref, mergeProps, unref, useSSRContext, withCtx, createVNode, openBlock, createBlock, Fragment, renderList, toDisplayString, createCommentVNode } from "vue";
 import { ssrRenderAttrs, ssrRenderComponent, ssrIncludeBooleanAttr, ssrInterpolate, ssrRenderList, ssrRenderClass } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-a31bd95f.mjs";
+import { A as AuthLayout } from "./AuthLayout-18ded6d5.mjs";
 import { useForm, usePage, Head } from "@inertiajs/vue3";
 import { _ as _sfc_main$2, a as _sfc_main$3 } from "./TextInput-66ab7a8d.mjs";
 import Echo from "laravel-echo";
@@ -24,7 +24,7 @@ const _sfc_main$1 = {
   emits: ["addMessage"],
   setup(__props, { emit }) {
     const props = __props;
-    const env = { "VITE_PUSHER_APP_KEY": "a5fc9c15e9d538e998b4", "VITE_PUSHER_HOST": "localhost", "VITE_PUSHER_PORT": "80", "VITE_PUSHER_SCHEME": "http", "VITE_PUSHER_APP_CLUSTER": "eu", "BASE_URL": "/build/", "MODE": "production", "DEV": false, "PROD": true, "SSR": true };
+    const env = { "VITE_PUSHER_APP_KEY": "", "VITE_PUSHER_HOST": "localhost", "VITE_PUSHER_PORT": "80", "VITE_PUSHER_SCHEME": "http", "VITE_PUSHER_APP_CLUSTER": "eu", "VITE_LARAVEL_VUE_I18N_HAS_PHP": "true", "BASE_URL": "/build/", "MODE": "production", "DEV": false, "PROD": true, "SSR": true };
     onMounted(() => {
       const pusher = new Pusher(env.VITE_PUSHER_APP_KEY, {
         cluster: env.VITE_PUSHER_APP_CLUSTER,
