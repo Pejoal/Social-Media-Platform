@@ -2,6 +2,7 @@
 
 #### [Live Demo](https://pejoal.live/)
 
+![Example Image](public/docs/images/social_media_logo.png)
 ---
 
 ## Authors
