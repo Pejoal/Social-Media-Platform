@@ -1,6 +1,6 @@
 # Social Media Platform
 
-#### [Live Demo](http://34.125.179.57/)
+#### [Live Demo](https://pejoal.live/)
 
 ---
 
