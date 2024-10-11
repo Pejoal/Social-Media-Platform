@@ -2,7 +2,16 @@
 
 #### [Live Demo](https://pejoal.live/)
 
-![Example Image](public/docs/images/social_media_logo.png)
+![Example Image](public/docs/images/social_media.png)
+![Example Image](public/docs/images/social_media1.png)
+![Example Image](public/docs/images/social_media2.png)
+![Example Image](public/docs/images/social_media3.png)
+![Example Image](public/docs/images/social_media4.png)
+![Example Image](public/docs/images/social_media5.png)
+![Example Image](public/docs/images/social_media6.png)
+![Example Image](public/docs/images/social_media7.png)
+![Example Image](public/docs/images/social_media8.png)
+![Example Image](public/docs/images/social_media9.png)
 ---
 
 ## Authors
