@@ -46,8 +46,34 @@ class SetupSeeder extends Seeder {
       User::create($user);
     }
 
-    User::factory(10)->has(Post::factory(3))->create();
-    User::factory(100)->create();
+    User::factory(10)->create()->each(function ($user) {
+      Post::factory(rand(1, 5))->create(['user_id' => $user->id])->each(function ($post) use ($user) {
+        Comment::factory(rand(1, 5))->create(['user_id' => $user->id, 'post_id' => $post->id])->each(function ($comment) use ($user) {
+          Reply::factory(rand(1, 5))->create(['user_id' => $user->id, 'comment_id' => $comment->id]);
+        });
+      });
+    });
+
+    $users = User::all();
+    $posts = Post::all();
+    for ($i = 0; $i < 60; $i++) {
+      $user_id = $users->random()->id;
+      $post_id = $posts->random()->id;
+
+      if (!Like::where('likeable_type', Post::class)->where('likeable_id', $post_id)->where('user_id', $user_id)->exists()) {
+        Like::factory()->create(['user_id' => $user_id, 'likeable_id' => $post_id, 'likeable_type' => Post::class]);
+      }
+    }
+
+    $comments = Comment::all();
+    for ($i = 0; $i < 60; $i++) {
+      $user_id = $users->random()->id;
+      $comment_id = $comments->random()->id;
+
+      if (!Like::where('likeable_type', Comment::class)->where('likeable_id', $comment_id)->where('user_id', $user_id)->exists()) {
+        Like::factory()->create(['user_id' => $user_id, 'likeable_id' => $comment_id, 'likeable_type' => Comment::class]);
+      }
+    }
 
     $rooms = [
       ['title' => 'Front End', 'slug' => 'Front-End'],
@@ -61,12 +87,7 @@ class SetupSeeder extends Seeder {
       Room::create($room);
     }
 
-    Comment::factory(20)->create();
-    Reply::factory(20)->create();
-
-    $users = User::all();
-
-    for ($i = 0; $i < 30; $i++) {
+    for ($i = 0; $i < 15; $i++) {
       $friendship = Friendship::firstOrCreate([
         'user1_id' => 1,
         'user2_id' => $users->random()->id,
@@ -74,11 +95,19 @@ class SetupSeeder extends Seeder {
 
       FriendshipStatus::firstOrCreate([
         'friendship_id' => $friendship->id,
-        'name' => collect(['accepted', 'pending'])->random(),
+        'name' => 'accepted',
+      ]);
+
+      $friendship = Friendship::firstOrCreate([
+        'user2_id' => 1,
+        'user1_id' => $users->random()->id,
+      ]);
+
+      FriendshipStatus::firstOrCreate([
+        'friendship_id' => $friendship->id,
+        'name' => 'pending',
       ]);
     }
-
-    Like::factory(30)->create();
 
     // RoomMessage::factory(10)->create();
   }
