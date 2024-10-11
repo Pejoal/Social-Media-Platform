@@ -15,8 +15,7 @@ class FriendshipStatusFactory extends Factory {
    */
   static $friendshipId = 1;
 
-  public function definition(): array
-  {
+  public function definition(): array {
     return [
       'name' => fake()->randomElement(['pending', 'accepted']),
       'friendship_id' => self::$friendshipId++,
