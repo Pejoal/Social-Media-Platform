@@ -29,7 +29,7 @@ const toggleNav = () => {
   <div class="min-h-screen bg-black text-white">
     <header class="flex items-center justify-between h-20 bg-zinc-900 py-2 px-4 sm:px-6 lg:px-8">
         <Link class="text-white font-bold text-xl" :href="route('home')">
-          {{ $page.props.appName }}
+          {{ $page.props.auth.user.firstname }}
         </Link>
         <!-- Translations -->
         <Locales :horizontal="true" />
