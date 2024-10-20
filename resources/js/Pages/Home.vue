@@ -89,7 +89,6 @@ function deletePost(id) {
       <section class="flex items-center justify-between px-4 md:px-0 pt-6 pb-4">
         <button class="btn btn-primary" @click="doSearch(search)">
           {{ $page.props.words.search }}
-          <!-- {{ trans('words.my_profile') }} -->
         </button>
 
         <input
@@ -109,7 +108,6 @@ function deletePost(id) {
         >
           <Post :post="post" v-on:deletePost="deletePost" />
         </div>
-        <!-- <Pagination :links="props.data.links" /> -->
         <Loading v-if="loading" />
       </section>
     </template>
