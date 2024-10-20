@@ -77,6 +77,13 @@ Route::group(['middleware' => ['localeCookieRedirect', 'localizationRedirect', '
 //     return;
 // })->name('language');
 
+  Route::middleware(['auth'])->group(function () {
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('profile/photo/update', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo.update');
+  });
+
   Route::middleware(['auth', 'verified'])->group(function () {
 
     // Route::group(['prefix' => 'auth'], function () {
@@ -85,11 +92,6 @@ Route::group(['middleware' => ['localeCookieRedirect', 'localizationRedirect', '
     // });
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/profile/photo/update', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo.update');
 
     Route::post('/dashboard/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/user/{user:username}/profile', [PostController::class, 'userProfile'])->name('user.profile');
