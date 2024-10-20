@@ -3,7 +3,7 @@ import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { usePage, Head, Link } from "@inertiajs/vue3";
 import { ref } from "vue";
 import Post from "@/Components/Post.vue";
-import ResuableModal from "@/Components/ResuableModal.vue";
+import ReuseableModal from "@/Components/ReuseableModal.vue";
 import Loading from "@/Components/Loading.vue";
 import { useFetch } from "@/utils";
 
@@ -182,7 +182,7 @@ function deletePost(id) {
             {{ $page.props.words.respond }}
           </button>
           <Teleport to="body">
-            <ResuableModal :show="showModal" @close="showModal = false">
+            <ReuseableModal :show="showModal" @close="showModal = false">
               <template #content>
                 <div class="flex flex-col w-[70vw] px-2 py-1 overflow-y-auto">
                   <div class="bg-zinc-800 shadow-md rounded-lg p-2 w-full">
@@ -224,7 +224,7 @@ function deletePost(id) {
                   </div>
                 </div>
               </template>
-            </ResuableModal>
+            </ReuseableModal>
           </Teleport>
         </div>
         <button

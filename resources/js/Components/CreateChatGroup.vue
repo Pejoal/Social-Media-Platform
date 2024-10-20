@@ -1,5 +1,5 @@
 <script setup>
-import ResuableModal from "./ResuableModal.vue";
+import ReuseableModal from "./ReuseableModal.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
@@ -37,7 +37,7 @@ let showModal = ref(false);
   </button>
 
   <Teleport to="body">
-    <ResuableModal :show="showModal" @close="showModal = false">
+    <ReuseableModal :show="showModal" @close="showModal = false">
       <template #content>
         <form
           @submit.prevent="storeGroup"
@@ -56,8 +56,8 @@ let showModal = ref(false);
             class="my-2 bg-white rounded-md px-2 py-1"
           />
           <button class="btn btn-primary" :disabled="form.processing">
-            {{ properities.words.create_chat_group }}</button
-          >
+            {{ properities.words.create_chat_group }}
+          </button>
           <Transition
             enter-from-class="opacity-0"
             leave-to-class="opacity-0"
@@ -69,6 +69,6 @@ let showModal = ref(false);
           </Transition>
         </form>
       </template>
-    </ResuableModal>
+    </ReuseableModal>
   </Teleport>
 </template>

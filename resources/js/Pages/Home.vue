@@ -5,8 +5,6 @@ import Post from "@/Components/Post.vue";
 import Loading from "@/Components/Loading.vue";
 import { Head } from "@inertiajs/vue3";
 import { useFetch } from "@/utils";
-// import { trans } from 'laravel-vue-i18n';
-import { loadLanguageAsync } from 'laravel-vue-i18n';
 
 const props = defineProps({
   posts: {
@@ -67,7 +65,6 @@ async function doSearch(search) {
 }
 
 watch(search, (value) => {
-  // console.log(search.value, value, search.value == value);
   doSearch(value);
 });
 
@@ -94,7 +91,6 @@ function deletePost(id) {
           {{ $page.props.words.search }}
           <!-- {{ trans('words.my_profile') }} -->
         </button>
-        <!-- <button @click="loadLanguageAsync('en')">Change to English Language</button> -->
 
         <input
           class="py-2 px-4 rounded-xl text-black w-3/4"

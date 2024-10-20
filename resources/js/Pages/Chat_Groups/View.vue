@@ -1,6 +1,6 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
-import ResuableModal from "@/Components/ResuableModal.vue";
+import ReuseableModal from "@/Components/ReuseableModal.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import { ref, onMounted, onUnmounted } from "vue";
 import Echo from "laravel-echo";
@@ -215,7 +215,10 @@ function handleDeleteGroupMessage(id) {
         </section>
 
         <Teleport to="body">
-          <ResuableModal :show="addMemberModal" @close="addMemberModal = false">
+          <ReuseableModal
+            :show="addMemberModal"
+            @close="addMemberModal = false"
+          >
             <template #content>
               <div
                 v-if="props.friends"
@@ -239,11 +242,11 @@ function handleDeleteGroupMessage(id) {
                 </div>
               </div>
             </template>
-          </ResuableModal>
+          </ReuseableModal>
         </Teleport>
 
         <Teleport to="body">
-          <ResuableModal
+          <ReuseableModal
             :show="removeMemberModal"
             @close="removeMemberModal = false"
           >
@@ -270,7 +273,7 @@ function handleDeleteGroupMessage(id) {
                 </div>
               </div>
             </template>
-          </ResuableModal>
+          </ReuseableModal>
         </Teleport>
 
         <!-- <Link

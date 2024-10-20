@@ -1,5 +1,5 @@
 <script setup>
-import ResuableModal from "./ResuableModal.vue";
+import ReuseableModal from "./ReuseableModal.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import TextInput from "@/Components/TextInput.vue";
 import { ref } from "vue";
@@ -40,7 +40,7 @@ let showModal = ref(false);
   </button>
 
   <Teleport to="body">
-    <ResuableModal :show="showModal" @close="showModal = false">
+    <ReuseableModal :show="showModal" @close="showModal = false">
       <template #content>
         <form
           @submit.prevent="storeProject"
@@ -78,6 +78,6 @@ let showModal = ref(false);
           </Transition>
         </form>
       </template>
-    </ResuableModal>
+    </ReuseableModal>
   </Teleport>
 </template>

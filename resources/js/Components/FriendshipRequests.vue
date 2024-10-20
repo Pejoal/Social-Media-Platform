@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
-import ResuableModal from "./ResuableModal.vue";
+import ReuseableModal from "./ReuseableModal.vue";
 
 let showModal = ref(true);
 let friendshipRequests = ref([]);
@@ -65,7 +65,7 @@ async function acceptFriendshipRequest(friendshipRequestId, user2_id) {
     {{ $page.props.words.requests }}
   </button>
   <Teleport to="body">
-    <ResuableModal :show="showModal" @close="showModal = false">
+    <ReuseableModal :show="showModal" @close="showModal = false">
       <template #content>
         <section class="w-[70vw]">
           <h2 class="text-lg py-2 px-4">
@@ -124,6 +124,6 @@ async function acceptFriendshipRequest(friendshipRequestId, user2_id) {
           </div>
         </section>
       </template>
-    </ResuableModal>
+    </ReuseableModal>
   </Teleport>
 </template>
