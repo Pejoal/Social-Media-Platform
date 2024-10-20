@@ -19,6 +19,7 @@ use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserChatGroupMessageController;
 use App\Http\Controllers\UserCommentController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\UserReplyController;
