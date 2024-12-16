@@ -18,7 +18,10 @@ async function getFriends() {
 }
 getFriends();
 
-async function unfriend(friendship_id, user2_id) {
+async function unfriend(user2_id) {
+  friendships.value = friendships.value.filter(function (friendship) {
+    return friendship.friend_id != user2_id;
+  });
   try {
     axios
       .delete("/unfriend", {
@@ -26,11 +29,7 @@ async function unfriend(friendship_id, user2_id) {
           user2_id: user2_id,
         },
       })
-      .then((res) => {
-        friendships.value = friendships.value.filter(function (friendship) {
-          return friendship.id != friendship_id;
-        });
-      });
+      .then((res) => {});
   } catch (err) {
     console.log(err);
   }
@@ -66,7 +65,7 @@ async function unfriend(friendship_id, user2_id) {
                 </h3>
                 <button
                   class="text-red-500 font-bold hover:underline"
-                  @click="unfriend(friendship.id, friendship.friend_id)"
+                  @click="unfriend(friendship.friend_id)"
                 >
                   {{ $page.props.words.unfriend }}
                 </button>
