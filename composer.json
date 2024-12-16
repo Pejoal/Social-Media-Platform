@@ -12,6 +12,7 @@
         "ladumor/laravel-pwa": "^0.0.3",
         "laravel/framework": "^10.0",
         "laravel/pennant": "^1.2",
+        "laravel/reverb": "^1.4",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",

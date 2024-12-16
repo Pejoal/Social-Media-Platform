@@ -22,7 +22,7 @@ class SetupSeeder extends Seeder {
     $users = [
       [
         'firstname' => 'Pejoal',
-        'lastname' => 'Nagy',
+        'lastname' => 'Hanna',
         'username' => 'pejoal',
         'gender' => 'male',
         'email' => 'pejoal.official@gmail.com',
